@@ -101,8 +101,9 @@ def generate(csv_path, batch_year):
         try:
             rank = str(df.iloc[i, 3])
             mail = str(df.iloc[i, 9])
+            name=df.iloc[i, 0]
             year = batch_year
-            output_name = f"{df.iloc[i, 0]}-{rank}"
+            output_name = f"{name}-{rank}"
 
             img = Image.open(image_path)
             editing = ImageDraw.Draw(img)
@@ -115,7 +116,7 @@ def generate(csv_path, batch_year):
                     editing.text((X, Y + DIS * j), wrap(str(df.iloc[i,j-1])), (0,0,0), font)
                 else:
                     # Download and place profile picture
-                    url = df.iloc[i, j-1]
+                    url = df.iloc[i, 7]
                     can_download_pic = pic_download(url, "images/dp")
                     if not can_download_pic:
                         print(f"Skipping email for {mail}: Profile picture download failed.")
@@ -124,7 +125,7 @@ def generate(csv_path, batch_year):
                     pic_to_place(img, "images/dp.jpg", (144, 153), (30, 160), output_name)
 
                     # Download and place signature
-                    url = df.iloc[i, j]
+                    url = df.iloc[i, 8]
                     can_download_sig = pic_download(url, "images/signature")
                     if not can_download_sig:
                         print(f"Skipping email for {mail}: Signature download failed.")
