@@ -119,7 +119,9 @@ def generate(csv_path, batch_year):
             img = Image.open(image_path)
             editing = ImageDraw.Draw(img)
             for j in range(len(df.iloc[i]) - 1):
-                if j <= 4:
+                if j == 3:
+                    editing.text((X, Y + DIS * j), str(rollno), (0, 0, 0), font)
+                elif j <= 4:
                     editing.text((X, Y + DIS * j), wrap(str(df.iloc[i,j])), (0, 0, 0), font)
                 elif j == 5:
                     editing.text((X, Y + DIS * j), year, (0,0,0), font)
