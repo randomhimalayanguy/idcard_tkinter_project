@@ -8,8 +8,8 @@ import os
 import mimetypes
 
 # Email configuration
-SENDER_EMAIL = "healthmonitoring00@gmail.com"
-RECEIVER_EMAIL = "baliyanvdit@gmail.com"
+SENDER_EMAIL = "sdc-msi@msijanakpuri.com"
+# RECEIVER_EMAIL = ""
 PASSWORD = ""  # Replace with your actual email password
 SUBJECT = "Subject of the Email"
 
