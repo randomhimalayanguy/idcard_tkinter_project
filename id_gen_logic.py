@@ -128,20 +128,20 @@ def generate(csv_path, batch_year):
                 else:
                     # Download and place profile picture
                     url = df.iloc[i, 7]
-                    # can_download_pic = pic_download(url, "images/dp")
-                    # if not can_download_pic:
-                    #     print(f"Skipping email for {mail}: Profile picture download failed.")
-                    #     continue
+                    can_download_pic = pic_download(url, "images/dp")
+                    if not can_download_pic:
+                        print(f"Skipping email for {mail}: Profile picture download failed.")
+                        continue
 
                     #pic_to_place(img, pic_name, resize_tuple, loc_tuple, output_name, to_crop=False)
                     pic_to_place(img, "images/dp.jpg", (148, 159), (26, 156), output_name)
 
                     # Download and place signature
                     url = df.iloc[i, 8]
-                    # can_download_sig = pic_download(url, "images/signature")
-                    # if not can_download_sig:
-                    #     print(f"Skipping email for {mail}: Signature download failed.")
-                    #     continue
+                    can_download_sig = pic_download(url, "images/signature")
+                    if not can_download_sig:
+                        print(f"Skipping email for {mail}: Signature download failed.")
+                        continue
 
                     pic_to_place(output_name, "images/signature.jpg", (150, 30), (25, 351), output_name)
 
@@ -162,7 +162,7 @@ def generate(csv_path, batch_year):
             img.save(filepath)
 
             # Send email
-            # send_email(receiver_email=mail, attachment_path=filepath)
+            send_email(receiver_email=mail, attachment_path=filepath)
 
         except Exception as e:
             print(f"Failed to process row {i}: {e}")
